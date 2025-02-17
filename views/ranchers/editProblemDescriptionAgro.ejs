@@ -1,0 +1,17 @@
+<% layout("./layouts/boilerplate") %>
+
+<body>
+    <div class="row-1 vw-95 d-flex align-items-start  vh-100 rancher">
+       <div class="col-6 offset-3 mt-4">
+        <h2 class="offset-1">The Already Provided Problem Description Is</h2>
+        <form method="post" class="bg-dark p-2 text-light bg-opacity-25" action="/edit1/problemDescriptionAgro/<%=data._id%>">
+            <div class="form-group ps-4 pe-4 pd-4 ">
+                <label for="editedText">The Already Provided Problem Description Is</label>
+                 <input type="text" name="editedText" id="editedText" class="form-control bg-light p-2 text-dark bg-opacity-50" placeholder="UserName" value="<%=data.diseaseDescription %>">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success  ms-4 mb-2">Edit</button>
+        </form>
+       </div>
+    </div>
+</body>

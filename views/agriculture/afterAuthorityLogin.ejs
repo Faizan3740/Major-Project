@@ -1,0 +1,88 @@
+<% layout("./layouts/boilerplate") %>
+
+<link rel="stylesheet" href="/css/afterSignUpOrLogin.css">
+
+<div class="card border-dark mt-3">
+  <div class="card-body">
+    <div class="d-flex align-items-center flex-wrap">
+      <h4 class="">Register A New AgroChemist</h4>
+      <form method="get" class="ms-auto" action="/signUpFarmer">  
+        <button type="submit" class="changePassword me-3">
+          <svg
+            height="24"
+            width="24"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <span>Register An AgroChemist!</span>
+        </button>
+      </form>
+
+      <form method="get" class="ms-1"  action="/logoutAuthority">
+        <button type="submit" class="logout me-1">
+      <svg
+        height="24"
+        width="24"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+          fill="currentColor"
+        ></path>
+      </svg>
+      <span>Logout!</span>
+    </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<% if(farmerCount<1) {%>
+    <h3 class="text-danger mt-2 mb-3 text-center">No AgroChemist's Data Is Present, Begin With Registering Agro-Chemists On IntegratedCare!!!</h3>
+    <!-- <div class="card border-dark mb-3 ">
+        <div class="card-body text-light bg-dark">
+          <form action="/signUpFarmer">
+            <div class="d-flex align-items-center">
+                <b class="">Get Solution For You Problem From AgroChemist By Sending Your Concern</b>
+                <button type="submit" class="button  ms-auto margin-right">Register An AgroChemist!</button>
+            </div>
+          </form>
+        </div>
+    </div> -->
+<% } else{ %>
+    <br>
+    <h3 class="text-danger text-center">The Data of Registered Agro-Chemists</h3>
+    <% for(let i=0;i<data.length;i++) {%>
+      <div class="card border-dark mt-2 mb-2">
+        <div class="card-body text-light bg-dark">
+            <div class=" align-items-center">
+                <h4 class="ms-2 text-primary">UserName Of AgroChemist:</h4>
+                <h4 class="ms-2"><%= data[i].username %></h4>
+                <h4 class="ms-2 text-primary">eMail Id Of AgroChemist:</h4>
+                <h4 class="ms-2"><%= data[i].email %></h4>
+            </div>
+            <div class="d-flex">
+              <form method="post" action="/deleteAgroChemist/<%= data[i].username %>?_method=DELETE">
+                <button type="submit" class="button2 mt-1 ms-1">Remove The AgroChemist!</button>
+              </form>
+
+              <form method="get" action="/new/update/AgroChemist/<%= data[i].username %>">
+                <button type="submit" class="btn button1 mt-1 ms-1">Update Password!</button>
+             </form>
+
+             <form method="get" action="/new/change/AgroChemist/<%= data[i].username %>">
+              <button type="submit" class="button mt-1 ms-1">Change Password!</button>
+           </form>
+            </div>
+        </div>
+    </div>
+    <% } %>
+<% } %>

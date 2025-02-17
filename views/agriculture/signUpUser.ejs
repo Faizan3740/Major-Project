@@ -1,0 +1,28 @@
+<% layout("./layouts/boilerplate") %>
+
+<body>
+    <div class="row-1 vw-95 d-flex vh-100 align-items-center replyFarmer">
+       <div class="col-6 offset-3">
+        <h2 class="ps-4 offset-2 ">Sign Up On IntegratedCare</h2>
+        <form method="post" class="bg-dark p-2 text-light bg-opacity-25" action="/signUpUser">
+            <div class="form-group ps-4 pe-4 pd-4">
+                <label for="username">Set Your UserName</label>
+                 <input type="text" name="username" id="password" class="form-control  bg-light p-2 text-dark bg-opacity-50" placeholder="UserName">
+            </div>
+            <br>
+
+            <div class="form-group ps-4 pe-4">
+                <label for="email">Enter Your e-Mail</label>
+                 <input type="email" name="email" id="email" class="form-control bg-light p-2 text-dark bg-opacity-50" placeholder="e-Mail">
+            </div>
+            <br>
+            <div class="form-group ps-4 pe-4 pd-4">
+                <label for="password">Set You Password</label>
+                 <input type="password" name="password" id="password" class="form-control bg-light p-2 text-dark bg-opacity-50" placeholder="Password">
+            </div>
+            <br>
+            <button class="btn btn-success  ms-4 mb-2">Sign Up</button>
+        </form>
+       </div>
+    </div>
+</body>

@@ -1,0 +1,49 @@
+<% layout("./layouts/boilerplate") %>
+
+<body>
+    <div class="row-1">
+       <div class="col-6 offset-3 replyFarmer">
+        <h2 class="offset-3">Send Reply to The Farmer</h2>
+        <form method="post" action="/replyFarmer" enctype="multipart/form-data">
+            <div class="form-group ps-4 pe-4">
+                <label for="chemistName">Enter Your Name</label>
+                 <input type="text" name="chemistName" id="chemistName" class="form-control" placeholder="Name of the AgroChemist">
+            </div>
+            
+            <div class="form-group ps-4 pe-4">
+                <label for="diseasetName">Enter Name of The Disease</label>
+                 <input type="text" name="diseaseName" id="diseaseName" class="form-control" placeholder="Name of the Disease">
+            </div>
+
+            <div class="form-group ps-4 pe-4">
+                <label for="prescription">Prescrioption to be Followed</label>
+            <textarea id="prescription" class="form-control" name="prescription" rows="4" cols="50" placeholder="Provide Description About The Disease Which Your Crop Is affected By"></textarea>
+            </div>
+
+            <div class="form-group ps-4 pe-4">
+                <label for="filePath">Upload image/video</label>
+                <input type="file" class="form-control" name="filePath" id="filePath">    
+            </div>
+
+            
+            <div class="form-group ps-4 pe-4">
+                <label for="location">Enter Address</label>
+                <input type="text" name="location" class="form-control" id="location" placeholder="Provide Your Address">
+            </div>
+
+            <div class="form-group ps-4 pe-4">
+                <label for="phoneNumber">Enter Your Phone Number</label>
+            <input type="text" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Mobile Number">
+            </div>
+
+            <div class="form-group ps-4 pe-4">
+                <label for="email">Enter Your e-Mail</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="abc@gmail.com">
+            </div>
+            <br>
+            
+            <button class="btn btn-success  ms-4 mb-2">submit</button>
+        </form>
+       </div>
+    </div>
+</body>

@@ -1,0 +1,29 @@
+<% layout("./layouts/boilerplate") %>
+
+<style>
+    .margin-top{
+        margin-top: -60px;
+    }
+</style>
+
+<body>
+    <div class="row-1 d-flex align-items-center rancher vh-100">
+       <div class="col-6 offset-3 ">
+        <h2 class="text-center margin-top">Login to IntegratedCare</h2>
+        <form method="post" class="bg-dark p-2 text-light bg-opacity-25" action="/loginFarmer1">
+            <div class="form-group ps-4 pe-4 pd-4">
+                <label for="username">Enter Your UserName</label>
+                 <input type="text" name="username" id="password" class="form-control bg-light p-2 text-dark bg-opacity-50" placeholder="UserName">
+            </div>
+            <br>
+
+            <div class="form-group ps-4 pe-4 pd-4">
+                <label for="password">Enter You Password</label>
+                 <input type="password" name="password" id="password" class="form-control bg-light p-2 text-dark bg-opacity-50" placeholder="Password">
+            </div>
+            <br>
+            <button class="btn btn-success ms-4 mb-2">Login</button>
+        </form>
+       </div>
+    </div>
+</body>

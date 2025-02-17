@@ -1,0 +1,27 @@
+<% layout("./layouts/boilerplate") %>
+
+
+<% for(let i=0;i<data.diseaseInfo.length;i++) {%>
+    <div class="card border-dark mb-3 mt-3">
+      <div class="card-body">
+          <h5>The Provided Disease Description</h5>
+            <p class="align-self-center"><%=data.diseaseInfo[i].diseaseDescription  %></p>
+          <h5>The Solution Sent By AgroChemist</h5>
+          <p><%= data.diseaseInfo[i].solution %></p>
+          <div class="d-flex">
+            <% if(data.diseaseInfo[i].solution == "Not Yet Answered") {%>
+              <form action="/edit1/problemDescriptionAgro/<%= data.diseaseInfo[i]._id %>" method="get" class="mt-1 mb-2 me-3">
+                <button type="submit" class="btn btn-warning">Edit</button>
+               </form>
+              <% } %>
+              <form action="/delete1/<%= data._id %>/problemDescriptionAgro/<%= data.diseaseInfo[i]._id %>?_method=DELETE" method="post" class="mt-1 mb-2">
+                <button type="submit" class="btn btn-warning">Delete</button>
+               </form>
+          </div>
+      </div>
+    </div>
+<% }  %>
+
+
+
+

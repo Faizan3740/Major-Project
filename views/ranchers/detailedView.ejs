@@ -1,0 +1,164 @@
+<% layout("./layouts/boilerplate") %>
+
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    let coordinate1 = "<%- JSON.stringify(diseaseData.geometry.coordinates[0]) %>";
+   let coordinate2 = "<%- JSON.stringify(diseaseData.geometry.coordinates[1]) %>";
+   const place = "<%= diseaseData.location %>";
+</script>
+
+<style>
+    body {
+        background-color: #000000; /* Light grayish background for a clean look */
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    .image{
+        width: 350px;
+        height: 250px;
+    }
+    #map{
+    height: 500px;
+    width: 710px; 
+}
+.slider {
+    position: relative;
+    width: 100%; /* Occupy the full width of the parent container */
+    max-width: 710px; /* Match the form and map width */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.image {
+    width: 710px; /* Match the form and map width */
+    height: 500px; /* Match the map height */
+    object-fit: cover; /* Ensures content scales without distortion */
+    border-radius: 8px; /* Optional: Add rounded corners */
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#arrow-left {
+    left: 10px;
+}
+
+#arrow-right {
+    right: 10px;
+}
+
+
+</style>
+
+<div class="row-1 mt-4 d-flex align-items-center">
+    <div class="col-6 offset-3">
+     <h2 class="ps-4 text-warning">Detailed View of Entries By <%= userData.farmerName  %></h2>
+     <form method="get" action="/new/<%= diseaseData._id %>/solutionForm1">
+         <div class="form-group ps-4 pe-4 pd-4">
+             <label for="username" class="text-warning">Name of The Farmer</label>
+              <input type="text" readonly name="username" id="password" class="form-control" value="<%= userData.farmerName %>">
+         </div>
+         <br>
+
+         <div class="form-group ps-4 pe-4 pd-4">
+             <label for="password" class="text-warning">Type of Crop</label>
+            <input type="text" readonly name="username" id="password" class="form-control" value="<%= diseaseData.cropType %>">
+         </div>
+         <br>
+         <label for="media" class="text-warning  ps-4 pe-4 pd-4">Files Representing The Disease</label>
+         <div class="slider" id="media">
+            <button id="arrow-left" class="arrow" type="button">❮</button>
+            <div class="slider-wrapper">
+                <% diseaseData.filePath.forEach((file, index) => { %>
+                    <div class="slide">
+                        <% if (file.endsWith("mp4")) { %>
+                            <video src="<%= file %>" controls class="image"></video>
+                        <% } else { %>
+                            <img src="<%= file %>" alt="Unavailable" class="image">
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+            <button id="arrow-right" class="arrow" type="button">❯</button>
+        </div>
+        <br>
+         
+         <div class="form-group ps-4 pe-4 pd-4">
+            <label for="username" class="text-warning">Disease Description</label>
+             <input type="text" readonly name="username" id="password" class="form-control" value="<%= diseaseData.diseaseDescription %>">
+        </div>
+        <br>
+
+        <!-- <div class="form-group ps-4 pe-4 pd-4">
+            <label for="password">Address of The Farmer</label>
+           <input type="text" readonly name="username" id="password" class="form-control" value="<%= diseaseData.location %>">
+        </div>
+        <br> -->
+
+        <div class="form-group ps-4 pe-4 pd-4">
+            <label for="map" class="text-warning">District of The Farmer (Tap To View The Full Address):</label>
+            <div id="map"></div>
+        </div>
+        <br>
+
+        <div class="form-group ps-4 pe-4 pd-4">
+            <label for="username" class="text-warning">Phone Number of The Farmer:</label>
+             <input type="text" readonly name="username" id="password" class="form-control" value="<%= userData.phoneNumber %>">
+        </div>
+        <br>
+
+        <div class="form-group ps-4 pe-4 pd-4">
+            <label for="password" class="text-warning">e-Mail of The Farmer:</label>
+           <input type="text" readonly name="username" id="password" class="form-control" value="<%= userData.email %>">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success ms-4 mb-3 ">Send Solution</button>
+     </form>
+    </div>
+ </div>
+
+ <script src="/js/map.js"></script>
+ <script>
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    const slides = document.querySelectorAll('.slide');
+    const arrowLeft = document.getElementById('arrow-left');
+    const arrowRight = document.getElementById('arrow-right');
+    let currentIndex = 0;
+
+    function updateSliderPosition() {
+        sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    arrowLeft.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default button behavior
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+    updateSliderPosition();
+});
+
+arrowRight.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default button behavior
+    currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+    updateSliderPosition();
+});
+
+
+    // Initialize slider position
+    updateSliderPosition();
+</script>

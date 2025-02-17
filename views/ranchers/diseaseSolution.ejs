@@ -1,0 +1,19 @@
+<% layout("./layouts/boilerplate") %>
+
+<div class="card border-dark bg-dark mb-3 ps-4 pe-4 mt-4">
+    <div class="card-body">
+        <h4 class="text-white">The Disease Description Sent By Farmer:</h4>
+        <b class="text-warning"><%= data.diseaseDescription %></b>
+        <br>
+        <br>
+        
+        <form method="post" action="/<%= data._id %>/solutionForm1">
+            <div class="form-group">
+                <label for="solution" ><h4>Enter Solution For The Described Disease</h4></label>
+                <textarea id="solution" class="form-control" name="solution" rows="10" cols="50" required placeholder="Provide Description About How To Cure The Disease Which Appropriate Crop Is affected By"></textarea>
+            </div>
+            <br>
+                <button class="btn btn-success">Send Solution</button>
+         </form>
+    </div>
+</div>
